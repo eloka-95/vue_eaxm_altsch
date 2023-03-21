@@ -28,21 +28,29 @@
               <router-link to="/about" class="nav-link">About</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
+              <router-link
+                to="/dashboard"
+                class="nav-link"
+                v-show="$store.state.isAuthenticated === true"
+                >Dashboard</router-link
+              >
             </li>
 
             <li class="nav-item login">
-              <router-link to="/login"  class="nav-link"
+              <router-link to="/login" class="nav-link" v-show="$store.state.isAuthenticated === false"
                 >Login</router-link
               >
             </li>
 
             <li class="nav-item login">
-              <router-link to="#" @click="handleLogout" class="nav-link"
-                >Logout</router-link
-              >
+              <router-link
+                to="#"
+                @click="handleLogout"
+                class="nav-link"
+                v-show="$store.state.isAuthenticated === true "
+                >Logout
+              </router-link>
             </li>
-            {{ isLoggedIn }}
           </ul>
         </div>
       </div>
@@ -54,14 +62,15 @@
 export default {
   data: () => ({
     password: "",
+    showtoken: null,
   }),
   name: "Navbar",
+
+
   methods: {
     handleLogout() {
       this.$store.dispatch("logout");
     },
-
-    
   },
 };
 </script>
@@ -110,5 +119,8 @@ nav .nav-container .section-b a:hover {
   color: black;
   transition: 0.4s linear;
   color: whitesmoke;
+}
+p {
+  color: aquamarine;
 }
 </style>

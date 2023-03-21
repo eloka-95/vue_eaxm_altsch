@@ -64,6 +64,8 @@ export default createStore({
   }
 },
   getters: {
-    
+    getToken(state){
+      return state.isAuthenticated
+    }
   },
 });
